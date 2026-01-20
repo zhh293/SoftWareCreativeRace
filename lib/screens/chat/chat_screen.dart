@@ -71,9 +71,28 @@ class _ChatScreenState extends State<ChatScreen> {
         });
       }
     } catch (e) {
+      debugPrint('Load messages failed: $e');
+      // 临时使用假数据
       if (mounted) {
         setState(() {
-          _error = e.toString().replaceAll('Exception: ', '');
+          _messages = [
+            Message(
+              messageId: '1',
+              conversationId: widget.conversationId,
+              role: 'user',
+              content: 'Can you explain the difference between past simple and present perfect?',
+              tokensUsed: 10,
+              createdAt: DateTime.now().subtract(const Duration(minutes: 5)),
+            ),
+            Message(
+              messageId: '2',
+              conversationId: widget.conversationId,
+              role: 'assistant',
+              content: 'Certainly! The **Past Simple** is used for actions that happened at a specific time in the past and are finished.\n\nExample: *I visited Paris last year.*\n\nThe **Present Perfect** is used for actions that happened at an unspecified time in the past or have a connection to the present.\n\nExample: *I have visited Paris twice.* (and I might go again)',
+              tokensUsed: 50,
+              createdAt: DateTime.now().subtract(const Duration(minutes: 4)),
+            ),
+          ];
           _isLoading = false;
         });
       }

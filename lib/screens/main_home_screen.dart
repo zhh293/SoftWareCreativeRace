@@ -346,8 +346,16 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                   final conversation = _conversations[index];
                   return ConversationListTile(
                     conversation: conversation,
-                    onTap: () => context
-                        .push('/home/chat/${conversation.conversationId}'),
+                    onTap: () {
+                      debugPrint(
+                          'Tapped conversation: ${conversation.conversationId}');
+                      context.pushNamed(
+                        'chat',
+                        pathParameters: {
+                          'conversationId': conversation.conversationId
+                        },
+                      );
+                    },
                   );
                 },
               ),

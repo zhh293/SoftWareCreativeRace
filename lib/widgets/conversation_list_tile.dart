@@ -16,16 +16,17 @@ class ConversationListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    
+
     return Material(
-      color: Colors.transparent,
+      color: theme.cardTheme.color,
+      borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
         child: Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: theme.cardTheme.color,
+            // color: theme.cardTheme.color, // Moved to Material
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
               color: theme.cardTheme.shape is RoundedRectangleBorder
